@@ -9,5 +9,18 @@ from Toolapi.models import Character
 
 class CharacterView(ViewSet):
 
-    def retrieve(self, requesr, pk):
+    def retrieve(self, request, pk):
         character = Character.objects.get(pk=pk)
+        serializer = CharacterSerializer(character)
+        return Response(serializer.data)
+    
+    def list(self, request):
+        character = Character.objects.get(user=request.user)
+        serializer = CharacterSerializer(character)
+        return Response(serializer.data)
+    
+class CharacterSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Character
+        fields = ('id', 'user', 'bio', 'alignment')
