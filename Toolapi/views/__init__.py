@@ -1,1 +1,1 @@
-from .character import CharacterView
+from .characterview import CharacterView
