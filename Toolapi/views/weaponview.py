@@ -18,7 +18,7 @@ class WeaponView(ViewSet):
         serializer = WeaponSerializer(weapon)
         return Response(serializer.data)
 
-class WeaponSerializer:
+class WeaponSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Weapons
